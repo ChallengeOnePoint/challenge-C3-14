@@ -3,9 +3,9 @@ let store = Redux.createStore(function(state = Immutable.List(), action) {
     return state.push(action.payload);
 });
 
-@ReactRedux.connect(state => state)
 class Card extends React.Component {
-  constructor() {
+  constructor(props) {
+    super(props);
     this.state = {};// TODO
   }
   render() {
@@ -24,6 +24,7 @@ class Card extends React.Component {
     );
   }
 }
+ReactRedux.connect(state => state)(Card);
   
 class Homepage extends React.Component {
   render() {
