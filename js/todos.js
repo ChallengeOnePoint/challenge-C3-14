@@ -27,31 +27,39 @@ class Card extends React.Component {
 ReactRedux.connect(state => state)(Card);
   
 class Homepage extends React.Component {
+    
+    AddCard() {
+      fetch("http://cmc.im:9005/api/todo", { method: "POST"})
+      .then(function(data){
+          console.log(data);
+      }).catch(function(err){
+          console.log(err);
+      });
+    }
+    
   render() {
+      var cards = [];
+      for (var i = 0; i < 20; i++)
+        cards.push(<Card key={i} />);
+        
     return (
           <div>
           <div className="navbar-fixed">
     <nav className="blue" role="navigation">
       <div className="nav-wrapper container">
-          <div className="brand-logo" style={{"verticalAlign": "middle"}}> Catstagram </div>
+          <div className="brand-logo" style={{"verticalAlign": "middle"}}> Trellow </div>
       </div>
     </nav>
 
   </div>
     <div className="container">
     <div className="section">
+        <a className="btn-floating btn-large waves-effect waves-light red" onClick={this.AddCard.bind(this)}>
+            <i className="material-icons">add</i>
+         </a>
       <div className="row">
-         <div className="col s12 m4 l4">
-          <div className="card medium hoverable">
-            <div className="card-content">
-              <span className="card-title grey-text">item1</span>
-              <p className="grey-text">Thanks </p>
-            </div>
-            <div className="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
+         {cards}
+         
       </div>
     </div>
     </div>
