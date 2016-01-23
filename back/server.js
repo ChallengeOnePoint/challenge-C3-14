@@ -1,13 +1,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-server.listen(9002);
+server.listen(9005);
 
 var todos = [];
 
 app.use(bodyParser.urlencoded());
+app.use(cors());
 
 app.get('/api/todo', function(req, res) {
   return res.json(todos);
