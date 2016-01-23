@@ -1,7 +1,23 @@
 let store = Redux.createStore(function(state = Immutable.List(), action) {
   if (action.type === "NEW")
     return state.push(action.payload);
+  else if (action.type === "CHANGE")
+    return state.update(action.payload.id, action.payload);
+  else if (action.type === "DELETE")
+    return state.delete(action.payload.id);
 });
+
+var socket = io('http://cmc.im:9005');
+socket.on('new', function(todo) {
+  store.dispatch({ type: "NEW", payload: todo });
+});
+socket.on('change', function(todo) {
+  store.dispatch({ type: "CHANGE", payload: todo });
+});
+socket.on('delete', function(todo) {
+  store.dispatch({ type: "DELETE", payload: todo });
+});
+
 
 class Card extends React.Component {
   constructor(props) {
