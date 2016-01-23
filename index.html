@@ -13,6 +13,9 @@
   <script src="build/react.js"></script>
   <script src="build/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.0.5/redux.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/4.0.6/react-redux.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.7.6/immutable.js"></script>
 </head>
 <body>
   <div id="example"></div>
@@ -22,75 +25,6 @@
   <script src="js/materialize.min.js"></script>
   <script src="js/init.js"></script>
   <script type="text/babel">
-    class Homepage extends React.Component {
-      render() {
-        return (
-          <div>
-          <div className="navbar-fixed">
-    <nav className="blue" role="navigation">
-      <div className="nav-wrapper container">
-          <div className="brand-logo" style={{"verticalAlign": "middle"}}> Catstagram </div>
-      </div>
-    </nav>
-
-  </div>
-    <div className="container">
-    <div className="section">
-      <div className="row">
-         <div className="col s12 m4 l4">
-          <div className="card medium hoverable">
-            <div className="card-content">
-              <span className="card-title grey-text">item1</span>
-              <p className="grey-text">Thanks </p>
-            </div>
-            <div className="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-
-        <div className="col s12 m4 l4">
-          <div className="card medium hoverable">
-            <div className="card-content">
-              <span className="card-title grey-text">item1</span>
-              <p className="grey-text">Thanks </p>
-            </div>
-            <div className="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-        <div className="col s12 m4 l4">
-          <div className="card medium hoverable">
-            <div className="card-content">
-              <span className="card-title grey-text">item2</span>
-              <p className="grey-text"> ...</p>
-            </div>
-            <div className="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div className="divider"></div>
-
-  <footer className="page-footer fixed blue lighten-1">
-    <div className="container">
-      <div className="row">
-        <div className="col l6 s12" align="center">
-        </div>
-      </div>
-    </div>
-  </footer>
-  </div>);
-      }
-    }
-    ReactDOM.render(
-      <Homepage />,
-      document.getElementById('example')
-    );
   </script>
   </body>
 </html>
