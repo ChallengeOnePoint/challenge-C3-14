@@ -1,0 +1,149 @@
+/* Custom Stylesheet */
+
+nav ul a,
+nav .brand-logo {
+  /* color: #3e3e3e; */
+  color: #fafafa;
+}
+
+.logo_img {
+  height: 126px !important;
+}
+
+.bg_img {
+  max-width: 100%;
+}
+
+/* for small screen smartphones */
+@media only screen and (max-width : 600px) {
+  /* prevent parallax background images deformation */
+  .bg_img {
+  max-width: 200%;
+  }
+
+  /* scales down fontsize */
+  h1.header {
+    font-size: 2.5rem;
+  }
+
+  h2.header {
+    font-size: 2.5rem;
+  }
+
+  h5 .header {
+    font-size: 2rem;
+  }
+
+  .brand-logo {
+    font-size: 1.5rem !important;
+  }
+
+  h2 .material-icons {
+    font-size: 3rem !important;
+  }
+
+  .material-icons {
+    font-size: 2rem !important;
+  }
+
+  .footer-copyright {
+    font-size: .6rem !important;
+  }
+
+  /* scales down button size */
+  .btn-large {
+    height: 36px;
+    line-height: 36px;
+  }
+
+  .parallax-container {
+  min-height: 350px !important;
+}
+
+}
+
+.blue-text {
+  color: #00b0f0 !important;
+}
+
+.grey-text {
+  color: #3e3e3e !important;
+}
+
+.orange-text {
+  color: #ff6500 !important;
+}
+
+.blue {
+  background-color: #00b0f0 !important;
+}
+
+.grey {
+  background-color: #3e3e3e !important;
+}
+
+.orange {
+  background-color: #ff6500 !important;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.sponsor_banners {
+  text-align: justify !important;
+}
+
+.sponsor_img {
+    display: inline-block;
+    height: 80px !important;
+}
+
+.sponsor_banners:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+
+.button-collapse {
+  /* color: #3e3e3e; */
+  color: #fafafa;
+}
+
+.parallax-container {
+  min-height: 500px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+  background-color: rgba(0,0,0,.2);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
