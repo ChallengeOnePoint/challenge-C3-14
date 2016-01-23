@@ -1,35 +1,27 @@
-let store = Redux.createStore(function(state = Immutable.List(), action) {
+let store = Redux.createStore(function(state = { todos: Immutable.List() }, action) {
   if (action.type === "NEW")
-    return state.push(action.payload);
+    return { todos: state.todos.push(action.payload) };
   else if (action.type === "CHANGE")
-    return state.update(action.payload.id, action.payload);
+    return { todos: state.todos.update(action.payload.id, action.payload) };
   else if (action.type === "DELETE")
-    return state.delete(action.payload.id);
+    return { todos: state.todos.delete(action.payload.id) };
+  else
+    return state;
 });
 
-var socket = io('http://cmc.im:9005');
-socket.on('new', function(todo) {
-  store.dispatch({ type: "NEW", payload: todo });
-});
-socket.on('change', function(todo) {
-  store.dispatch({ type: "CHANGE", payload: todo });
-});
-socket.on('delete', function(todo) {
-  store.dispatch({ type: "DELETE", payload: todo });
-});
+store.dispatch({ type: "INIT" });
 
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};// TODO
   }
   render() {
     return (
       <div className="col s12 m4 l4">
         <div className="card medium hoverable">
           <div className="card-content">
-          <span className="card-title grey-text">item1</span>
+          <span className="card-title grey-text">{this.props.title}</span>
           <p className="grey-text">Thanks </p>
           </div>
           <div className="card-action">
@@ -40,24 +32,46 @@ class Card extends React.Component {
     );
   }
 }
-ReactRedux.connect(state => state)(Card);
-  
+
 class Homepage extends React.Component {
-    
-    AddCard() {
-      fetch("http://cmc.im:9005/api/todo", { method: "POST"})
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      todo: []
+    };
+  }
+
+  AddCard() {
+    fetch("http://cmc.im:9005/api/todo", { method: "POST"})
       .then(function(data){
           console.log(data);
       }).catch(function(err){
           console.log(err);
       });
-    }
-    
+  }
+
+  componentWillMount() {
+    this.socket = io('http://cmc.im:9005');
+    this.socket.on('new', function(todo) {
+      this.state.todo.push(todo);
+      this.setState({ todo: this.state.todo.slice() });
+    });
+  }
+
+  componentDidMount() {
+    fetch("http://cmc.im:9005/api/todo")
+      .then((data) => this.setState({ todo: data }))
+      .catch(function(err){
+          console.log(err);
+      });
+  }
+
   render() {
-      var cards = [];
-      for (var i = 0; i < 20; i++)
-        cards.push(<Card key={i} />);
-        
+    console.log(this.state.todo);
+    var cards = this.state.todo.map(function(elem) {
+      return <Card key={elem.id} title={elem.title} contents={elem.contents} />;
+    });
     return (
           <div>
           <div className="navbar-fixed">
